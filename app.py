@@ -19,7 +19,8 @@ class App:
                 "request": request,
                 "title": "Hello Gondonio!"
             })
-        
+
+        #Рендерим страницу
         @self.app.get("/aboutme", response_class=HTMLResponse)
         async def about_me_page(request: Request):
             return self.templates.TemplateResponse("about.html", {"request": request})
