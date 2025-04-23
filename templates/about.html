@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemple 2</title>
+</head>
+<body>
+    {% if message %}
+        <h1>{{message}}</h1>
+    {% else %}
+        <h1>Хто я?</h1>
+    {% endif %}
+
+    <form method="post">
+        <input type="text" name="name", placeholder="Ваше имя" required>
+        <button type="submit">Отправить</button>
+    </form>
+</body>
+</html>
