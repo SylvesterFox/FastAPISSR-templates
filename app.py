@@ -1,5 +1,6 @@
 from fastapi import FastAPI, Request, Form
 from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 import uvicorn
 
@@ -8,6 +9,7 @@ class App:
     def __init__(self):
         self.app = FastAPI() 
         self.templates = Jinja2Templates(directory="templates") # Папка с html шаблонами
+        self.app.mount("/static", StaticFiles(directory="static"), name="static") # Подключаем статику для стилей и картинок
         self._setup_routes() # Инициирование путей
 
     def _setup_routes(self):
@@ -19,8 +21,8 @@ class App:
                 "request": request,
                 "title": "Hello Gondonio!"
             })
-
-        #Рендерим страницу
+        
+        # Рендеринг страницы
         @self.app.get("/aboutme", response_class=HTMLResponse)
         async def about_me_page(request: Request):
             return self.templates.TemplateResponse("about.html", {"request": request})
